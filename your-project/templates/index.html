@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Telecommunication System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* You can add your custom styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .HEADING a {
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .list {
+            list-style: none;
+            padding: 0;
+        }
+        .list li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+        .list a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        .slider {
+            display: flex;
+            transition: transform 1s ease;
+        }
+        .slider img {
+            width: 100%;
+            height: auto;
+        }
+        .container {
+            margin: 30px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+        h2 {
+            text-align: center;
+        }
+        form input, form select, form button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="HEADING">
+            <a href="#">DOMESTIC TELECOMMUNICATION SYSTEM</a>
+        </div>
+    </header>
+
+    <nav>
+        <ul class="list">
+            <li><a href="#Company">Add Company</a></li>
+            <li><a href="#Plan">Add Plan</a></li>
+            <li><a href="#Network">Add Network Infrastructure</a></li>
+            <li><a href="#Customer">Add Customer</a></li>
+            <li><a href="#Employee">Add Employee</a></li>
+        </ul>
+    </nav>
+
+    <div class="slider-container">
+        <div class="slider">
+            <img src="{{ url_for('static', filename='images/image1.jpg') }}" />
+            <img src="{{ url_for('static', filename='images/image2.jpeg') }}" />
+            <img src="{{ url_for('static', filename='images/image3.jpg') }}" />
+            <img src="{{ url_for('static', filename='images/image4.png') }}" />
+        </div>
+    </div>
+
+    <!-- Add Company Form -->
+    <div class="container" id="Company">
+        <h2>Add Company</h2>
+        <form action="{{ url_for('insert_company') }}" method="post">
+            <input type="text" name="company_id" placeholder="Company ID" required>
+            <input type="text" name="location" placeholder="Location" required>
+            <input type="text" name="branch_name" placeholder="Branch Name" required>
+            <button type="submit">Add Company</button>
+        </form>
+    </div>
+
+    <!-- Add Plan Form -->
+    <div class="container" id="Plan">
+        <h2>Add Plan</h2>
+        <form action="{{ url_for('insert_plan') }}" method="post">
+            <input type="text" name="plan_id" placeholder="Plan ID" required>
+            <input type="text" name="plan_name" placeholder="Plan Name" required>
+            <input type="text" name="plan_details" placeholder="Plan Details" required>
+            <button type="submit">Add Plan</button>
+        </form>
+    </div>
+
+    <!-- Add Network Infrastructure Form -->
+    <div class="container" id="Network">
+        <h2>Add Network Infrastructure</h2>
+        <form action="{{ url_for('insert_network_infrastructure') }}" method="post">
+            <input type="text" name="network_id" placeholder="Network ID" required>
+            <input type="text" name="type" placeholder="Type (Fiber/4G etc.)" required>
+            <input type="text" name="location" placeholder="Location" required>
+            <button type="submit">Add Network Infrastructure</button>
+        </form>
+    </div>
+
+    <!-- Add Customer Form -->
+    <div class="container" id="Customer">
+        <h2>Add Customer</h2>
+        <form action="{{ url_for('insert_customer') }}" method="post">
+            <input type="text" name="customer_id" placeholder="Customer ID" required>
+            <input type="text" name="customer_name" placeholder="Customer Name" required>
+            <input type="text" name="address" placeholder="Address" required>
+            <button type="submit">Add Customer</button>
+        </form>
+    </div>
+
+    <!-- Add Employee Form -->
+    <div class="container" id="Employee">
+        <h2>Add Employee</h2>
+        <form action="{{ url_for('insert_employee') }}" method="post">
+            <input type="text" name="employee_id" placeholder="Employee ID" required>
+            <input type="text" name="employee_name" placeholder="Employee Name" required>
+            <input type="text" name="department" placeholder="Department" required>
+            <button type="submit">Add Employee</button>
+        </form>
+    </div>
+
+    <script>
+        // Auto-scrolling image slider
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.slider img');
+        const slider = document.querySelector('.slider');
+
+        function scrollImages() {
+            currentIndex++;
+            if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        setInterval(scrollImages, 3000); // Change image every 3 seconds
+    </script>
+</body>
+</html>
